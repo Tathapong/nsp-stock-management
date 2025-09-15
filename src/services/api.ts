@@ -16,7 +16,12 @@ export const getAirtableSection = async () => {
 export const getAirtableMachines = async (sectionName?: string) => {
   const tableId = "tblq9Jnv8ajAdOr1C";
   let url = tableId;
-  if (sectionName) url += `filterByFormula=FIND("${sectionName}",ARRAYJOIN({section},","))`;
+  url += "?fields[]=name";
+  if (sectionName) url += `&filterByFormula=FIND("${sectionName}",ARRAYJOIN({section},","))`;
   const res = (await airtableInstance.get(url)) as ResType.GetAirtableMachineResponse;
   return res.data;
+};
+
+export const getAirtableParts = async () => {
+  const tableId = "";
 };
