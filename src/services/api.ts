@@ -22,6 +22,4 @@ export const getAirtableMachines = async (sectionName?: string) => {
   return res.data;
 };
 
-export const getAirtableParts = async () => {
-  const tableId = "";
-};
+export const getAirtableParts = async () => {};

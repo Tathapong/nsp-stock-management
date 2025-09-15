@@ -20,6 +20,7 @@ function Issue() {
   const [selectedMachine, setSelectedMachine] = useState("");
 
   const [parts, setParts] = useState([]);
+  console.log(setParts);
   const [selectedPart, setSelectedPart] = useState<string>("");
 
   const fetchSections = useCallback(async () => {
