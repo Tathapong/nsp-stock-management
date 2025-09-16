@@ -1,6 +1,6 @@
 import "./App.css";
 
-import Issue from "./pages/Issue";
+import Issue from "./pages/issue/Issue";
 
 export default function SearchForm() {
   return (

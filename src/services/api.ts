@@ -13,13 +13,25 @@ export const getAirtableSection = async () => {
   return res.data;
 };
 
-export const getAirtableMachines = async (sectionName?: string) => {
+export const getAirtableMachines = async () => {
   const tableId = "tblq9Jnv8ajAdOr1C";
   let url = tableId;
-  url += "?fields[]=name";
-  if (sectionName) url += `&filterByFormula=FIND("${sectionName}",ARRAYJOIN({section},","))`;
+  url += "?fields[]=name&fields[]=section";
   const res = (await airtableInstance.get(url)) as ResType.GetAirtableMachineResponse;
   return res.data;
 };
 
-export const getAirtableParts = async () => {};
+export const getAirtableMasterItems = async () => {
+  const tableId = "tbl8ol60D4lQ0FoDZ";
+  let url = tableId;
+  url += "?fields[]=name&fields[]=machine";
+  const res = (await airtableInstance.get(url)) as ResType.GetAirtableMasterItemResponse;
+  return res.data;
+};
+
+export const getAirtableMasterItemById = async (recordId: string) => {
+  const tableId = "tbl8ol60D4lQ0FoDZ";
+  const url = tableId + "/" + recordId;
+  const res = (await airtableInstance.get(url)) as ResType.GetAirtableMasterItemByIdResponse;
+  return res.data;
+};
