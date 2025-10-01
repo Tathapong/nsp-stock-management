@@ -17,6 +17,7 @@ import {
 import type { SectionRecord, MachineRecord, MasterItemsRecord, MasterItemRecord } from "../../services/responseType";
 import { AxiosError } from "axios";
 import PartCard from "./PartCard";
+import Loading from "../../components/Loading";
 
 function Issue() {
   const [sections, setSections] = useState<SectionRecord[]>([]);
@@ -29,6 +30,8 @@ function Issue() {
   const [selectedPart, setSelectedPart] = useState("");
 
   const [partDetail, setPartDetail] = useState<MasterItemRecord | null>(null);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchSections = useCallback(async () => {
     const { records } = await getAirtableSection();
@@ -209,6 +212,11 @@ function Issue() {
               location={partDetail.fields.location}
               picture={partDetail.fields.picture && partDetail.fields.picture[0].url}
               stock={partDetail.fields.stock}
+              setIsLoading={setIsLoading}
+              selectedMachine={selectedMachine}
+              selectedPart={selectedPart}
+              selectedSection={selectedSection}
+              setPartDetail={setPartDetail}
             />
           </div>
         ) : (
@@ -216,6 +224,8 @@ function Issue() {
             <Spinner text="กำลังโหลดข้อมูล" />
           </div>
         ))}
+
+      {isLoading && <Loading />}
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { airtableInstance } from "../config/axios";
 
 // Type
 import * as ResType from "./responseType";
+import * as ReqType from "./requestType";
 
 airtableInstance.defaults.baseURL += "appETjyXZJCNk3ItG";
 
@@ -33,5 +34,13 @@ export const getAirtableMasterItemById = async (recordId: string) => {
   const tableId = "tbl8ol60D4lQ0FoDZ";
   const url = tableId + "/" + recordId;
   const res = (await airtableInstance.get(url)) as ResType.GetAirtableMasterItemByIdResponse;
+  return res.data;
+};
+
+export const createAirtableStockTransaction = async (data: ReqType.CreateAirtableStockTransactionRequest) => {
+  const tableId = "tbl3oWESVOdLvoWnO";
+  const res = (await airtableInstance.post(tableId, {
+    fields: data,
+  })) as ResType.CreateAirtableStockTransactionResponse;
   return res.data;
 };

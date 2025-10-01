@@ -39,6 +39,22 @@ export interface MasterItemRecord extends AirTableRecord {
   };
 }
 
+export interface StockTransactionRecord extends AirTableRecord {
+  fields: {
+    id: number;
+    item: string[];
+    name: string[];
+    status: "stock_in" | "stock_out";
+    quantity: number;
+    createdDate: string;
+    qty_in: number;
+    qty_out: number;
+    machines: string[];
+    stock_out_date_only: string;
+    item_machine: string;
+  };
+}
+
 export type GetAirtableSectionResponse = AxiosResponse<{
   records: SectionRecord[];
 }>;
@@ -52,3 +68,5 @@ export type GetAirtableMasterItemResponse = AxiosResponse<{
 }>;
 
 export type GetAirtableMasterItemByIdResponse = AxiosResponse<MasterItemRecord>;
+
+export type CreateAirtableStockTransactionResponse = AxiosResponse<StockTransactionRecord>;
