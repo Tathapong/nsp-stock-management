@@ -59,7 +59,7 @@ function PartCard({
         });
 
         setPartDetail((prev) => {
-          if (prev) prev.fields.stock -= 1;
+          if (prev) prev.fields.stock -= number;
           return prev;
         });
       }
